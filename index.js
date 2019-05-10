@@ -4,10 +4,16 @@ const mustache = require('mustache-express');
 const router = express.Router();
 
 router.get('/:weight',function(req,res){
-    let weight = {'name': req.params.weight};
-    let wFull;
-    let percentage = (weight*100)/wFull + '%';
-    res.render('index', percentage);
+    let wFull = 1093589 - 423000;
+    let realWeight = req.params.weight;
+    let percentage;
+    if (realWeight > 423000){
+        percentage =  ' em' + ((realWeight-423000)*100)/wFull + '%';
+    } else {
+        percentage = 'Vazio';
+    }
+    let weightString = {'name': percentage };
+    res.render('index', weightString);
     //__dirname : It will resolve to your project folder.
 });
 
